@@ -1,19 +1,24 @@
-package org.greg.wine
+package org.greg.lda
 package classifiers
 
-import org.greg.wine.matrix._
+import org.greg.lda.matrix._
 
 class LDA(data: Map[Int, DesignMatrix]) {
- 
+  
+  assert(data.size > 0)
+
+  val k = data.values.head
+
   val train_data = data
   val train_means = this.train_data.mapValues(x => x.col_means())
-  val train_covariances = this.train_data.mapValues(x => x.covariance())
+  val covariances = this.train_data.mapValues(x => x.covariance())
 
-  def train() = {
+  def predict(new_x: List[Double]) = {
+
+    assert(new_x.size == this.k)
+
      
-  } 
-
-  def predict() = {
+    
   
   }
 }

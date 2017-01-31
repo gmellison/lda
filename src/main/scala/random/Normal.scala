@@ -1,4 +1,4 @@
-package org.greg.wine
+package org.greg.lda
 package random
 
 import scala.math.sqrt
@@ -6,7 +6,7 @@ import scala.math.log
 import scala.math.exp
 import scala.math.Pi
 import scala.math.pow
-import org.greg.wine.matrix._
+import org.greg.lda.matrix._
 
 class Normal(m: Double = 0.0, v: Double = 1.0) {
 

@@ -1,4 +1,4 @@
-package org.greg.wine
+package org.greg.lda
 package matrix
 
 import scala.math.abs
@@ -9,13 +9,29 @@ class Matrix(elements: List[List[Double]]) {
    */
   
   assert(elements.size > 0)  
+  assert(elements.head.size > 0)
   assert(elements.forall(x => x.size == elements.head.size))
 
   val matrix: List[List[Double]] = elements
   val nrow = this.matrix.size
   val ncol = this.matrix.head.size
+
+  // equality method for comparing matrix instances:
+  override def equals(that: Any): Boolean = {
+    that match {
+      case that: Matrix => {
+        if (this.nrow == that.nrow && this.ncol == that.ncol) {
+          val elem_equality = for (
+            i <- 0 to this.nrow-1;
+            j <- 0 to this.ncol-1) yield this.matrix(i)(j) == that.matrix(i)(j)         
+          elem_equality.forall(x => x)
+        } else false
+      }
+      case _ => false
+    }
+  }
+
   
-  //def transpose(): Matrix = new Matrix(List.transpose(this.matrix))
   def transpose(): Matrix = {
     val t = for (i <- 0 to this.matrix.head.size - 1) yield {
       for (j <- 0 to this.matrix.size - 1) yield {

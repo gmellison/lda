@@ -1,4 +1,4 @@
-package org.greg.wine
+package org.greg.lda
 package matrix
 
 abstract trait Design {
